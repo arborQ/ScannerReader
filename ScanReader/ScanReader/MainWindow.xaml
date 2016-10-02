@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScanReader"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Skaner" 
+        Height="350"
+        Width="525" 
+        WindowState="Maximized" 
+        WindowStyle="None" 
+        ResizeMode="NoResize" KeyDown="OnWindowKeyDownEvent">
     <Grid>
-        
+        <GroupBox x:Name="groupBox" Header="Dane" Margin="10,10,10,0" VerticalAlignment="Top" Height="72">
+            <Grid Height="52" Margin="0,0,0,-2" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="Code" Grid.Column="0" FontSize="9" Margin="0,0,0,0">
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" FontSize="23" Text="{Binding Code}" />
+                </GroupBox>
+                <GroupBox Header="Date-No" Grid.Column="1" FontSize="9">
+                    <TextBlock x:Name="textBlock2" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" FontSize="23" />
+                </GroupBox>
+            </Grid>
+
+        </GroupBox>
+        <GroupBox x:Name="groupBox1" Header="Maszyna" Margin="10,87,10,10"/>
     </Grid>
 </Window>
