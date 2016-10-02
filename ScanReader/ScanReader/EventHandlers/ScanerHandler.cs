@@ -41,7 +41,7 @@ namespace ScanReader.EventHandlers
                 InputText += InputHelper.ToChar(key);
             }
 
-            // HandleNewCode("20160808-00520#53A02RH0H");
+             HandleNewCode("20160808-00520#53A02RH0H");
         }
 
         private void HandleNewCode(string code)
