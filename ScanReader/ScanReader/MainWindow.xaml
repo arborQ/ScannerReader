@@ -22,11 +22,22 @@
                     <TextBlock x:Name="textBlock" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" FontSize="23" Text="{Binding Code}" />
                 </GroupBox>
                 <GroupBox Header="Date-No" Grid.Column="1" FontSize="9">
-                    <TextBlock x:Name="textBlock2" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" FontSize="23" />
+                    <TextBlock x:Name="textBlock2" HorizontalAlignment="Stretch" Margin="0,0,0,0" TextWrapping="Wrap" FontSize="23" Text="{Binding DataNo}" />
                 </GroupBox>
             </Grid>
 
         </GroupBox>
-        <GroupBox x:Name="groupBox1" Header="Maszyna" Margin="10,87,10,10"/>
+        <GroupBox Header="Maszyna" Margin="10,87,10,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding ImagePath}" Stretch="Fill" />
+                <GroupBox Grid.Column="1" Header="Opis" Margin="10">
+                    <TextBlock Text="{Binding MachineDescription}" FontSize="20" />
+                </GroupBox>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>

@@ -63,6 +63,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EventHandlers\CodeHandlers\DateNoHandler.cs" />
+    <Compile Include="EventHandlers\CodeHandlers\CodeHandler.cs" />
+    <Compile Include="EventHandlers\CodeHandlers\CodeParser.cs" />
+    <Compile Include="EventHandlers\CodeHandlers\ICodeHandler.cs" />
     <Compile Include="EventHandlers\ScanerHandler.cs" />
     <Compile Include="Helpers\InputHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -96,6 +100,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\noData.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\notLoaded.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\machines\20160905-00165\53A08VN0H\dessss.txt" />
+    <Resource Include="Images\machines\20160905-00165\53A08VN0H\seria_sh.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\machines\20160808-00520\53A02RH0H\" />
+    <Folder Include="Images\machines\20160923-00344\101840550\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

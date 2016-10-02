@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ScanReader.EventHandlers.CodeHandlers;
+using ScanReader.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +12,42 @@ namespace ScanReader.EventHandlers
 {
     public interface IScanerHandler
     {
-        void OnInputEnter(object sender, KeyEventArgs e);
+        void InputTriggered(Key key);
     }
 
     public class ScanerHandler : IScanerHandler
     {
-        public ScanerHandler()
+        private string InputText { get; set; }
+
+        private ICodeHandler[] _codeHandlers;
+
+        public ScanerHandler(Action<string> onCodeEntered = null, Action<string> onDataNoEntered = null)
         {
-            //uiElement.OnKeyDown += (e) => { }
+            _codeHandlers = new[] {
+                new CodeHandler(onCodeEntered) as ICodeHandler,
+                new DateNoHandler(onDataNoEntered) as ICodeHandler
+            };
         }
 
-        public void OnInputEnter(object sender, KeyEventArgs e)
+        public void InputTriggered(Key key)
         {
+            if (key == Key.Enter)
+            {
+                HandleNewCode(InputText);
+                InputText = string.Empty;
+            }
+            else
+            {
+                InputText += InputHelper.ToChar(key);
+            }
+        }
 
+        private void HandleNewCode(string code)
+        {
+            foreach(var handler in _codeHandlers)
+            {
+                handler.ParseInputAndTrigger(code);
+            }
         }
     }
 }

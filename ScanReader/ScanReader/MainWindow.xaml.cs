@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -23,7 +24,7 @@ namespace ScanReader
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public ScanerHandler Scaner;
+        public IScanerHandler Scaner;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -36,17 +37,69 @@ namespace ScanReader
             }
             set
             {
-                OnPropertyChanged();
                 _code = value;
+                OnPropertyChanged();
+                OnPropertyChanged("ImagePath");
+                OnPropertyChanged("MachineDescription");
+            }
+        }
+
+        private string _dataNo;
+        public string DataNo
+        {
+            get
+            {
+                return _dataNo;
+            }
+            set
+            {
+                _dataNo = value;
+                OnPropertyChanged();
+                OnPropertyChanged("ImagePath");
+                OnPropertyChanged("MachineDescription");
+            }
+        }
+
+        public string ImagePath
+        {
+            get
+            {
+                var file = FilesInDirectory().FirstOrDefault(f => f.EndsWith("jpg") || f.EndsWith("png"));
+
+                return file ?? "/Images/notLoaded.png";
+            }
+        }
+
+        public string MachineDescription
+        {
+            get
+            {
+                var file = FilesInDirectory().FirstOrDefault(f => f.EndsWith("txt"));
+                if (string.IsNullOrEmpty(file))
+                {
+                    return "brak opisu";
+                }
+                else
+                {
+                    var text = File.ReadAllText(file);
+                    return string.IsNullOrEmpty(text) ? "brak opisu" : text;
+                }
             }
         }
 
         public MainWindow()
         {
-            Scaner = new ScanerHandler();
+            Scaner = new ScanerHandler(
+                onCodeEntered: code =>
+                {
+                    Code = code;
+                },
+                onDataNoEntered: dataNo =>
+                {
+                    DataNo = dataNo;
+                });
             InitializeComponent();
-            this.DataContext = this;
-            this.Code = "test";
+            DataContext = this;
         }
 
         private void OnWindowKeyDownEvent(object sender, KeyEventArgs e)
@@ -56,10 +109,27 @@ namespace ScanReader
                 Close();
                 return;
             }
-            Scaner.OnInputEnter(sender, e);
+            Scaner.InputTriggered(e.Key);
         }
 
-        //[NotifyPropertyChangedInvocator]
+        private IEnumerable<string> FilesInDirectory()
+        {
+            var directoryPath = $"Images\\machines\\{Code}\\{DataNo}";
+
+            directoryPath = System.IO.Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                directoryPath);
+
+            if (Directory.Exists(directoryPath))
+            {
+                return Directory.EnumerateFiles(directoryPath);
+            }
+            else
+            {
+                return new string[0];
+            }
+        }
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
