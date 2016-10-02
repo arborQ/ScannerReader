@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ScannerReader.Properties
+namespace ScanReader.Properties
 {
 
 
