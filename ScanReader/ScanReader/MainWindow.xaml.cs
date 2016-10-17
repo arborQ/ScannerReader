@@ -25,9 +25,7 @@ namespace ScanReader
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public IScanerHandler Scaner;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        
         private string _code;
         public string Code
         {
@@ -129,6 +127,8 @@ namespace ScanReader
                 return new string[0];
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
