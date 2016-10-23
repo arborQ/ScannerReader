@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ScanReader.EventHandlers.CodeHandlers
+namespace FileHelpers.EventHandlers.CodeHandlers
 {
     public interface ICodeHandler
     {

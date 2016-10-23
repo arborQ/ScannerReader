@@ -1,4 +1,5 @@
-﻿using ScanReader.EventHandlers;
+﻿using FileHelpers.EventHandlers;
+using FileHelpers.FileLocator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,9 +63,9 @@ namespace ScanReader
         {
             get
             {
-                var file = FilesInDirectory().FirstOrDefault(f => f.EndsWith("jpg") || f.EndsWith("png"));
+                var file = FileLocatorHelper.LoadLocations(Code, DataNo);
 
-                return file ?? "/Images/notLoaded.png";
+                return file != null && file.IsValid ? file.Image : "/Images/notLoaded.png";
             }
         }
 
@@ -72,16 +73,8 @@ namespace ScanReader
         {
             get
             {
-                var file = FilesInDirectory().FirstOrDefault(f => f.EndsWith("txt"));
-                if (string.IsNullOrEmpty(file))
-                {
-                    return "brak opisu";
-                }
-                else
-                {
-                    var text = File.ReadAllText(file);
-                    return string.IsNullOrEmpty(text) ? "brak opisu" : text;
-                }
+                var file = FileLocatorHelper.LoadLocations(Code, DataNo);
+                return file != null && file.IsValid ? file.Description : "brak opisu";
             }
         }
 
@@ -110,23 +103,6 @@ namespace ScanReader
             Scaner.InputTriggered(e.Key);
         }
 
-        private IEnumerable<string> FilesInDirectory()
-        {
-            var directoryPath = $"Images\\machines\\{Code}\\{DataNo}";
-
-            directoryPath = System.IO.Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
-                directoryPath);
-
-            if (Directory.Exists(directoryPath))
-            {
-                return Directory.EnumerateFiles(directoryPath);
-            }
-            else
-            {
-                return new string[0];
-            }
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

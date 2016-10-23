@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace ScanReader.EventHandlers.CodeHandlers
+namespace FileHelpers.EventHandlers.CodeHandlers
 {
     public class DateNoHandler : CodeParser, ICodeHandler
     {

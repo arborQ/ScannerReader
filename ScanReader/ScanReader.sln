@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanerAdministrator", "Scan
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{F467BFD1-3D6A-49AA-90D0-0DD257E23795}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileHelpers", "FileHelpers\FileHelpers.csproj", "{519756AC-A136-4AAC-A6FD-785D56E97CF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,8 +25,15 @@ Global
 		{D16B03F9-87A1-45C4-8FF6-4E8EEF601ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D16B03F9-87A1-45C4-8FF6-4E8EEF601ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D16B03F9-87A1-45C4-8FF6-4E8EEF601ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{519756AC-A136-4AAC-A6FD-785D56E97CF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{519756AC-A136-4AAC-A6FD-785D56E97CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{519756AC-A136-4AAC-A6FD-785D56E97CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{519756AC-A136-4AAC-A6FD-785D56E97CF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{519756AC-A136-4AAC-A6FD-785D56E97CF0} = {F467BFD1-3D6A-49AA-90D0-0DD257E23795}
 	EndGlobalSection
 EndGlobal

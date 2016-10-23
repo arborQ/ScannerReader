@@ -63,12 +63,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EventHandlers\CodeHandlers\DateNoHandler.cs" />
-    <Compile Include="EventHandlers\CodeHandlers\CodeHandler.cs" />
-    <Compile Include="EventHandlers\CodeHandlers\CodeParser.cs" />
-    <Compile Include="EventHandlers\CodeHandlers\ICodeHandler.cs" />
-    <Compile Include="EventHandlers\ScanerHandler.cs" />
-    <Compile Include="Helpers\InputHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -120,6 +114,12 @@
   <ItemGroup>
     <Folder Include="Images\machines\20160808-00520\53A02RH0H\" />
     <Folder Include="Images\machines\20160923-00344\101840550\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
+      <Project>{519756ac-a136-4aac-a6fd-785d56e97cf0}</Project>
+      <Name>FileHelpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

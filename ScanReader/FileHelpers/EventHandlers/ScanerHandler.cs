@@ -1,5 +1,5 @@
-﻿using ScanReader.EventHandlers.CodeHandlers;
-using ScanReader.Helpers;
+﻿using FileHelpers.EventHandlers.CodeHandlers;
+using FileHelpers.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace ScanReader.EventHandlers
+namespace FileHelpers.EventHandlers
 {
     public interface IScanerHandler
     {

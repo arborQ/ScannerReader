@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ScanReader.EventHandlers.CodeHandlers
+namespace FileHelpers.EventHandlers.CodeHandlers
 {
     public abstract class CodeParser
     {

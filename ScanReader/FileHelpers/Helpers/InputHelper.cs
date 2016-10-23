@@ -2,7 +2,7 @@
 using System.Text;
 using System.Windows.Input;
 
-namespace ScanReader.Helpers
+namespace FileHelpers.Helpers
 {
     public static class InputHelper
     {
