@@ -11,7 +11,7 @@ namespace FileHelpers.FileLocator
         {
             var directoryPath = $"Images\\machines\\{code}#{dataNo}";
 
-            directoryPath = System.IO.Path.Combine(
+            directoryPath = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 directoryPath);
 
@@ -57,7 +57,7 @@ namespace FileHelpers.FileLocator
 
         private static string GetCode(string directory)
         {
-            return Path.GetDirectoryName(directory);
+            return directory.Split(Path.DirectorySeparatorChar).Last();
         }
 
         public bool IsValid

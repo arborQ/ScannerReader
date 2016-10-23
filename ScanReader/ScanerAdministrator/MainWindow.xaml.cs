@@ -23,20 +23,13 @@ namespace ScanerAdministrator
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-
-
         public MainWindow()
         {
             InitializeComponent();
-            
             DataContext = new ItemsListDataContext();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public static readonly DependencyProperty IsCheckBoxCheckedProperty =
-           DependencyProperty.Register("IsCheckBoxChecked", typeof(bool),
-             typeof(MainWindow), new UIPropertyMetadata(false));
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -44,14 +37,14 @@ namespace ScanerAdministrator
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void listView_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if(e == null) { }
+        }
+
+        private void WindowLoaded(object sender, RoutedEventArgs e)
+        {
+            (DataContext as ItemsListDataContext).LoadData();
         }
     }
 }
