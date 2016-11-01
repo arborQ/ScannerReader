@@ -98,6 +98,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExcelHelpers\ExcelHelpers.csproj">
+      <Project>{a09274e5-51cb-49d0-98af-1bfb3fd0ee42}</Project>
+      <Name>ExcelHelpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FileHelpers\FileHelpers.csproj">
       <Project>{519756ac-a136-4aac-a6fd-785d56e97cf0}</Project>
       <Name>FileHelpers</Name>

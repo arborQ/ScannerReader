@@ -1,4 +1,5 @@
-﻿using ScanerAdministrator.Models;
+﻿using ExcelHelpers;
+using ScanerAdministrator.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,6 +56,34 @@ namespace ScanerAdministrator
         private void CloseEvent(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void ExportExcel(object sender, RoutedEventArgs e)
+        {
+            var dlg = new Microsoft.Win32.SaveFileDialog();
+
+            dlg.DefaultExt = ".xlsx";
+            //dlg.Filter = "Excel (*.xlsx)";
+
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            var result = dlg.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+            {
+                // Open document 
+                string filename = dlg.FileName;
+                //textBox1.Text = filename;
+
+                using (var help = new ExcelHelper(dlg.FileName))
+                {
+                    help.UpdateValue("Maszyny", "A1", "test 1");
+                    help.UpdateValue("Maszyny", "B1", "test 2");
+                    help.UpdateValue("Maszyny", "C1", "test 3");
+                }
+            }
         }
     }
 }
