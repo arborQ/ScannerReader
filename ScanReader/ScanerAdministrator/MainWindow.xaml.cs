@@ -21,20 +21,20 @@ namespace ScanerAdministrator
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
+        private ItemsListDataContext ItemsContext
+        {
+            get
+            {
+                return DataContext as ItemsListDataContext;
+            }
+        }
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new ItemsListDataContext();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            textBox.Focus();
         }
 
         private void listView_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -44,7 +44,17 @@ namespace ScanerAdministrator
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
-            (DataContext as ItemsListDataContext).LoadData();
+            ItemsContext.LoadData();
+        }
+
+        private void showDetails(object sender, MouseButtonEventArgs e)
+        {
+            if(e == null) { }
+        }
+
+        private void CloseEvent(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

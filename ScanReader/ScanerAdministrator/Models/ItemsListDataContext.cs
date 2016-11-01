@@ -11,10 +11,41 @@ namespace ScanerAdministrator.Models
 {
     public class ItemsListDataContext : INotifyPropertyChanged
     {
-        public IEnumerable<MachineFile> Items { get; set; }
+        private IEnumerable<MachineFile> _items;
+
+        public IEnumerable<MachineFile> Items
+        {
+            get
+            {
+                return _items.Where(a => string.IsNullOrEmpty(Search) || a.ToString().ToLower().Contains(Search.ToLower())).ToList();
+            }
+
+            set
+            {
+                _items = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _search;
+        public string Search
+        {
+            get
+            {
+                return _search;
+            }
+            set
+            {
+                _search = value;
+                OnPropertyChanged();
+                OnPropertyChanged("Items");
+            }
+        }
+
 
         public ItemsListDataContext()
         {
+            Items = new List<MachineFile>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,7 +57,6 @@ namespace ScanerAdministrator.Models
         public void LoadData()
         {
             Items = FileLocatorHelper.LoadLocations().Where(a => a.IsValid);
-            OnPropertyChanged("Items");
         }
     }
 }

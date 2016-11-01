@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace FileHelpers.FileLocator
 {
@@ -52,7 +53,7 @@ namespace FileHelpers.FileLocator
             {
                 return null;
             }
-            return File.ReadAllText(textFile);
+            return File.ReadAllText(textFile, Encoding.UTF8);
         }
 
         private static string GetCode(string directory)
@@ -71,5 +72,10 @@ namespace FileHelpers.FileLocator
         public string Code { get; private set; }
         public string Description { get; private set; }
         public string Image { get; private set; }
+
+        public override string ToString()
+        {
+            return Code + " " + Description;
+        }
     }
 }
